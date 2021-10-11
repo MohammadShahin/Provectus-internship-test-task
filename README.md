@@ -106,7 +106,8 @@ print(longest_substring_without_repeating('pwwkew')) # 3
 print(longest_substring_without_repeating('')) # 0
 ```
 3. Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
-To solve this problem, we can use binary search. We start by setting `left = 0` and `right = len(array) - 1`, then we check the middle value between left and right and update them accordingly by either setting left or right to the middle index. We keep doing this until we find the upperbound index of the target, i.e. the smallest index whose element is larger or equal to the target value. The time complexity of the solution is O(log(n)) and the space complexity is O(1) since only a couple of new variables were introduced.
+
+Solution: to solve this problem, we can use binary search. We start by setting `left = 0` and `right = len(array) - 1`, then we check the middle value between left and right and update them accordingly by either setting left or right to the middle index. We keep doing this until we find the upperbound index of the target, i.e. the smallest index whose element is larger or equal to the target value. The time complexity of the solution is O(log(n)) and the space complexity is O(1) since only a couple of new variables were introduced.
 The solution's implementation:
 
 ```
