@@ -3,7 +3,7 @@ This file explains and goes through the steps of Provectus Internship's test tas
 solution. 
 
 ## Table of contents
-- [Data Processing Problem level 3](#data-processing-problem)
+- [Data Processing Problem level 2](#data-processing-problem)
   - [Tech stack](#tech-stack)
   - [Logic](#logic)
   - [Running this app](#run-app)
@@ -14,7 +14,7 @@ solution.
 - [Author](#author)
 
 <a name="data-processing-problem"></a>
-## Data Processing Problem level 3
+## Data Processing Problem level 2
 
 <a name="tech-stack"></a>
 ### Tech stack
