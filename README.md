@@ -41,9 +41,27 @@ The Flask service contains mainly three main functions described below:
 <a name="sql"></a>
 ### SQL
 
-1. asad
-2. ``` SELECT * FROM user GROUP BY last_name HAVING COUNT(last_name) > 1```
-3. ```SELECT * FROM  group by salary order by  salary desc limit 1,1;```
+1. 
+```
+SELECT users.id as id FROM 
+users LEFT JOIN departments 
+ON users.id = departments.user_id
+WHERE departments.user_id is NULL OR departments.department_id != 1;
+```
+2. 
+``` 
+SELECT last_name FROM user 
+GROUP BY last_name 
+HAVING COUNT(last_name) > 1
+```
+3. 
+```
+SELECT user.username as username, salary.salary as salary FROM user, salary 
+WHERE user.id = salary.user_id AND user.id IN (
+SELECT user_id FROM salary 
+ORDER BY salary DESC LIMIT 1,1
+);
+```
 
 <a name="dsa"></a>
 ### Algorithms and Data Structures
