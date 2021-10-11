@@ -3,21 +3,34 @@ This file explains and goes through the steps of Provectus Internship's test tas
 solution. 
 
 ## Table of contents
-- [Data Processing Problem level 2](#data-Processing-Problem-level-2)
+- [Data Processing Problem level 3](#data-processing-problem)
   - [Tech stack](#tech-stack)
-  - [Running this app](#running-this-app)
+  - [Running this app](#run-app)
 - [Coding Tasks for Data Engineers](#coding-tasks-for-data-engineers)
   - [SQL](#sql)
   - [Algorithms and Data Structures](#dsa)
   - [Linux shell](#linux-shell)
 - [Author](#author)
 
-<a name="coding-tasks-for-data-engineers"></a>
-## Data Processing Problem level 2
+<a name="data-processing-problem"></a>
+## Data Processing Problem level 3
 
+<a name="tech-stack"></a>
 ### Tech stack
+The implementation was done using python with Flask as the main service. Postgres SQL was used as the main database alongside with the output csv file to store the data. 
 
-<a name="running-this-app"></a>
+### Explanation
+The script `data_processing/data_processing.py` contains the main functionality for processing the data from the *src* directory and updating the *output.csv* and the postgres database with results. Firstly, it clears the file *output.csv* and writes only the names of columns in it. Secondly, it generates a list of all the csv files located in the *src* directory. Then it goes through each csv file and processes it independently. The processing of each csv file can be explained in the following steps:
+1. Checking the validity of the csv file contents: if it contains exactly the expected columns, one row for values, the types of the values match their columns, etc. If the csv file is valid, then process goes on to step 2. Otherwise, the process of handling this csv file is aborted.
+2. It checks if a matching image file with the csv file exists in the *src* directory. Please note that the absence of such an image does not mean aborting the csv file processing.
+3. Finally it writes the results to *output.csv* and the postgres database. If an image was not found in the previous step, then the value at `img_path`'s column will be simple empty ('').
+
+The Flask service contains mainly three main functions described below:
+1. An endpoint **GET** /data - get all records from DB in JSON format. Need to implement filtering by: is_image_exists = True/False, user min_age and max_age in years. 
+2. **POST** /data - manually run data processing in src_data.
+3. Periodically run data processing in src_data. This was done using multiprocessing. A new process is created to apply periodic update of the *output.csv* and the postgres database every 15 minutes.
+
+<a name="run-app"></a>
 ### Running this app
 
 <a name="coding-tasks-for-data-engineers"></a>
@@ -92,7 +105,29 @@ print(longest_substring_without_repeating('bbbbb')) # 1
 print(longest_substring_without_repeating('pwwkew')) # 3 
 print(longest_substring_without_repeating('')) # 0
 ```
-3. 
+3. Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+To solve this problem, we can use binary search. We start by setting `left = 0` and `right = len(array) - 1`, then we check the middle value between left and right and update them accordingly by either setting left or right to the middle index. We keep doing this until we find the upperbound index of the target, i.e. the smallest index whose element is larger or equal to the target value. The time complexity of the solution is O(log(n)) and the space complexity is O(1) since only a couple of new variables were introduced.
+The solution's implementation:
+
+```
+def locate_target(nums: list, target: int):
+    left = 0
+    right = len(nums) - 1
+    index = -1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            left = mid + 1
+        else:
+            index = mid
+            right = mid - 1
+    if index == -1:
+        return len(nums)
+    return index
+
+
+print(locate_target(nums=[1, 3, 5, 6], target=10)) # 2
+```
 
 
 <a name="linux-shell"></a>
@@ -109,4 +144,4 @@ Now to close this program, we need to find the PIDs (processes' id) associated w
 
 <a name="author"></a>
 ## Author
-Mohammad Shahin, a third year student at Innopolis University.
+Mohammad Shahin, a third-year student at Innopolis University.
