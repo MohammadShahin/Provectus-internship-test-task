@@ -31,9 +31,20 @@ The Flask service contains mainly three main functions described below:
 1. An endpoint **GET** /data - get all records from DB in JSON format. Need to implement filtering by: is_image_exists = True/False, user min_age and max_age in years. 
 2. **POST** /data - manually run data processing in src_data.
 3. Periodically run data processing in src_data. This was done using multiprocessing. A new process is created to apply periodic update of the *output.csv* and the postgres database every 15 minutes.
-
+4. 
 <a name="run-app"></a>
 ### Running this app
+This part explain the steps of running the app on Ubuntu 20.04.3 or higher with python 3.8 or higher. The installation can be done in the following steps:
+All of the dependencies and necessary modules used are listed in the file `requirements.txt` you need to run the following command in the terminal in the project directory to install them:
+  ```
+  pip install -r requirements.txt
+  ```
+Now you can run the core server using the command in the project directory:
+  ```
+  python app.py
+  ```
+This will make the app run on the localhost (127.0.0.1) and the port 3001.
+
 
 <a name="coding-tasks-for-data-engineers"></a>
 ## Coding Tasks for Data Engineers
