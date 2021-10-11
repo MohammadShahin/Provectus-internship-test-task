@@ -5,6 +5,7 @@ solution.
 ## Table of contents
 - [Data Processing Problem level 3](#data-processing-problem)
   - [Tech stack](#tech-stack)
+  - [Logic](#logic)
   - [Running this app](#run-app)
 - [Coding Tasks for Data Engineers](#coding-tasks-for-data-engineers)
   - [SQL](#sql)
@@ -19,7 +20,8 @@ solution.
 ### Tech stack
 The implementation was done using python with Flask as the main service. Postgres SQL was used as the main database alongside with the output csv file to store the data. 
 
-### Explanation
+<a name="logic"></a>
+### Logic
 The script `data_processing/data_processing.py` contains the main functionality for processing the data from the *src* directory and updating the *output.csv* and the postgres database with results. Firstly, it clears the file *output.csv* and writes only the names of columns in it. Secondly, it generates a list of all the csv files located in the *src* directory. Then it goes through each csv file and processes it independently. The processing of each csv file can be explained in the following steps:
 1. Checking the validity of the csv file contents: if it contains exactly the expected columns, one row for values, the types of the values match their columns, etc. If the csv file is valid, then process goes on to step 2. Otherwise, the process of handling this csv file is aborted.
 2. It checks if a matching image file with the csv file exists in the *src* directory. Please note that the absence of such an image does not mean aborting the csv file processing.
