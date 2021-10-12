@@ -7,17 +7,16 @@ from data_processing.postgres_handler import get_db_all_users, init_db, drop_use
 
 docker_compose = yaml.load(open('docker-compose.yml'))
 
-IP = '127.0.0.1'
+IP = '0.0.0.0'
 PORT = 3001
 PERIODIC_TIME = 10 * 60
 app = Flask(__name__)
 
 minio_info = {
-    'endpoint': os.getenv("Minio_host", "localhost"),
+    'endpoint': os.getenv("Minio_host", "localhost") + ':' + docker_compose['services']['minio']['ports'][0].split(':')[-1],
     'access_key': docker_compose['services']['minio']['environment'][0].split('=')[-1],
     'secret_key': docker_compose['services']['minio']['environment'][1].split('=')[-1],
 }
-
 minio_client = Minio(
     endpoint=minio_info['endpoint'],
     access_key=minio_info['access_key'],
