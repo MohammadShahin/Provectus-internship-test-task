@@ -6,6 +6,7 @@ solution.
 - [Data Processing Problem level 2](#data-processing-problem)
   - [Tech stack](#tech-stack)
   - [Logic](#logic)
+  - [Database](#database)
   - [Running this app](#run-app)
 - [Coding Tasks for Data Engineers](#coding-tasks-for-data-engineers)
   - [SQL](#sql)
@@ -20,16 +21,21 @@ solution.
 ### Tech stack
 The implementation was done using python with Flask as the main service. Postgres SQL was used as the main database alongside with the output csv file to store the data.
 
+
+<a name="database"></a>
+### Database
+The postgres database consists of one table which is the *users*. The table includes the following columns: {id, user_id, first_name, second_name, birthts, img_path}. The columns labels are self explanatory. Please note that when starting a new data processing operation, unlike the *output.csv* file, the database does not drop its rows. It just updates the existing ones or adds new ones. Currently, no function was added to drop a row from the *users* table.
+
 <a name="logic"></a>
 ### Logic
-The script `data_processing/main.py` contains the main functionality for processing the data from the *src* directory and updating the *output.csv* and the postgres database with results. Firstly, it clears the file *output.csv* and writes only the names of columns in it. Secondly, it generates a list of all the csv files located in the *src* directory. Then it goes through each csv file and processes it independently. The processing of each csv file can be explained in the following steps:
+The script *data_processing/main.py* contains the main functionality for processing the data from the *srcdata* bucket and updating *output.csv* and the postgres database with results. It interacts with MinIO and postgres through *data_processing/minio_handler.py* and *data_processing/postgres_handler.py*. Firstly, it initiates the database, clears the file *output.csv* and writes only the names of columns in it. Secondly, it generates a list of all the csv files located in the *srcdata* directory. Then it goes through each csv file and processes it independently. The processing of each csv file can be explained in the following steps:
 1. Checking the validity of the csv file contents: if it contains exactly the expected columns, one row for values, the types of the values match their columns, etc. If the csv file is valid, then process goes on to step 2. Otherwise, the process of handling this csv file is aborted.
-2. It checks if a matching image file with the csv file exists in the *src* directory. Please note that the absence of such an image does not mean aborting the csv file processing.
-3. Finally it writes the results to *output.csv* and the postgres database. If an image was not found in the previous step, then the value at `img_path`'s column will be simple empty ('').
+2. It checks if a matching image file with the csv file exists in the *srcdata* directory. Please note that the absence of such an image does not mean aborting the csv file processing.
+3. Finally it writes the results to *output.csv* and the postgres database. If an image was not found in the previous step, then the value at *img_path*'s column will be simple empty (''). 
 
 The Flask service, which is managed by *app.py*, contains mainly three main functions described below:
-1. An endpoint **GET** /data - get all records from DB in JSON format. Need to implement filtering by: is_image_exists = True/False, user min_age and max_age in years. 
-2. **POST** /data - manually run data processing in src_data.
+1. An endpoint **GET** /data - get all records from DB in JSON format. Need to implement filtering by: is_image_exists = True/False, user min_age and max_age in years. The response for this query is found by first generating the conditions of the existing arguments, then by getting all the rows in the *users* table as a dictionary, and finally filter the dictionary and return it. 
+2. **POST** /data - manually run data processing in src_data. In this process, both the *output.csv* file and the postgres database are upadated.
 3. Periodically run data processing in src_data. This was done using multiprocessing. A new process is created to apply periodic update of the *output.csv* and the postgres database every 15 minutes.
 
 
