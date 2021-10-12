@@ -34,18 +34,29 @@ The Flask service contains mainly three main functions described below:
 4. 
 <a name="run-app"></a>
 ### Running this app
-This part explain the steps of running the app on Ubuntu 20.04.3 or higher with python 3.8 or higher. The installation can be done in the following steps:
-All of the dependencies and necessary modules used are listed in the file `requirements.txt` you need to run the following command in the terminal in the project directory to install them:
-  ```
-  pip install -r requirements.txt
-  ```
-Now you can run the core server using the command in the project directory:
-  ```
-  python app.py
-  ```
-This will make the app run on the localhost (127.0.0.1) and the port 3001.
+This part explain the steps of running the app on Ubuntu 20.04.3 or higher with python 3.8 or higher. 
 
+Please note that the docker-compose was modified to include the Flask web service. This was done to make running the app process easier and shorter. Also note that a *Dockerfile* was added to help facilitate the Flask running.
 
+Now please follow the next steps to run the app:
+1. First you need to build the docker-compose using the following command:
+```
+$ sudo docker-compose up --build
+```
+This will results in some errors because there was no permission granted for the data processing to edit *minio* and *pgadmin*. To change that you need first to shut down docker-compose by keyboard interrupt and run the command:
+```
+$ sudo docker-compose down
+```
+2. You need now to change the permissions in *minio* and *pgadmin*. You can do that using the following commands:
+```
+$ sudo chmod 777 minio/
+$ sudo chmod 777 pgadmin/
+```
+3. Now run build docker-compose again, and it should work with no errors:
+```
+$ sudo docker-compose up --build
+```
+However since the *srcdata* directory in *minio* is empty, there will nothing to process. Thus to change, you need to change the permission of *srcdata*.
 <a name="coding-tasks-for-data-engineers"></a>
 ## Coding Tasks for Data Engineers
 
