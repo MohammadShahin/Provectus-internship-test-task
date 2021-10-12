@@ -69,7 +69,7 @@ def csv_to_dict(csv_file_path: str, primary_key) -> dict:
     'type_work': 'teacher'}, '90': {'age': 25, 'type_work': 'developer'}}.
     :param csv_file_path: the path of the targeted csv file.
     :param primary_key: the primary key in the csv file as a string.
-    :return: a dictionary is the format previously explained.
+    :return: a dictionary in the format previously explained.
     """
     data = {}
     with open(csv_file_path) as csv_file:

@@ -1,5 +1,5 @@
 import unittest
-from data_processing.data_processing import *
+from data_processing.main import *
 
 
 class TestHelpers(unittest.TestCase):
