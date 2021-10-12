@@ -18,7 +18,7 @@ solution.
 
 <a name="tech-stack"></a>
 ### Tech stack
-The implementation was done using python with Flask as the main service. Postgres SQL was used as the main database alongside with the output csv file to store the data. 
+The implementation was done using python with Flask as the main service. Postgres SQL was used as the main database alongside with the output csv file to store the data.
 
 <a name="logic"></a>
 ### Logic
@@ -35,7 +35,7 @@ The Flask service, which is managed by *app.py*, contains mainly three main func
 
 <a name="run-app"></a>
 ### Running this app
-This part explain the steps of running the app on Ubuntu 20.04.3 or higher with python 3.8 or higher. 
+This part explain the steps of running the app on Ubuntu 20.04.3 or higher with python 3.8.10 or higher. 
 
 Please note that the docker-compose was modified to include the Flask web service. This was done to make running the app process easier and shorter. Also note that a *Dockerfile* was added to help facilitate the Flask running.
 
