@@ -50,7 +50,7 @@ Now please follow the next steps to run the app:
 ```
 $ sudo docker-compose up --build
 ```
-This will results in some errors because there was no permission granted for the data processing to edit *minio* and *pgadmin*. To change that you need first to shut down docker-compose by keyboard interrupt and run the command:
+This will generate some new directories in the project. Moreover, this command will result in some errors because there was no permission granted for the data processing to edit *minio* and *pgadmin* (new directories). To change that you need first to shut down docker-compose by keyboard interrupt and run the command:
 ```
 $ sudo docker-compose down
 ```
@@ -71,7 +71,7 @@ Then copy all of the files you want to process and paste them in *srcdata*. Fina
 ```
 $ sudo docker-compose up --build
 ```
-This will make the app run localhost:3001. The results will be generated and stored in *output.csv* in *processeddata* alongside the postgres database.
+This will make the app run localhost:3001. The results will be generated and stored in *output.csv* in *processeddata* in *minio* directory alongside the postgres database.
 
 <a name="coding-tasks-for-data-engineers"></a>
 ## Coding Tasks for Data Engineers
