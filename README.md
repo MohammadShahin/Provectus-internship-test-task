@@ -19,7 +19,7 @@ solution.
 
 <a name="tech-stack"></a>
 ### Tech stack
-The implementation was done using python with Flask as the main service. Postgres SQL was used as the main database alongside with the output csv file to store the data.
+The implementation was done using python with Flask as the main service. Postgres SQL was used as the main database alongside with the output csv file to store the data. MinIO was used to manage the file system.
 
 
 <a name="database"></a>
