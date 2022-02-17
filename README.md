@@ -1,6 +1,5 @@
-# Provectus-Internship
-This file explains and goes through the steps of Provectus Internship's test task's 
-solution. 
+# Provectus-internship-test-task
+This file explains and goes through the steps of Provectus Internship's test task's solution. 
 
 ## Table of contents
 - [Data Processing Problem level 2](#data-processing-problem)
