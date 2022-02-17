@@ -11,7 +11,7 @@ This file explains and goes through the steps of Provectus Internship's test tas
   - [SQL](#sql)
   - [Algorithms and Data Structures](#dsa)
   - [Linux shell](#linux-shell)
-- [Author](#author)
+
 
 <a name="data-processing-problem"></a>
 ## Data Processing Problem level 2
@@ -199,7 +199,3 @@ print(locate_target(nums=[1, 3, 5, 6], target=10)) # 2
 3. Launch a python program my_program.py through CLI in the background. How would you close it after some period of time?
 To run the program in the background, we need to run the following command: ```nohup python /the/path/to/my_program.py &```. This will make the file ignore the inputs and redirect all of the program's output (stdout, stderr) to a file nohup.out. 
 Now to close this program, we need to find the PIDs (processes' id) associated with the program. This can done using the following command: ```ps ax | grep my_program.py``` Then we need to kill these processes by running ```kill PID``` of each of the processes. Finally we can combine the previous commands in one which will be as the following: ```kill $(ps aux | grep 'python my_program.py' | awk '{print $2}')``` (`awk '{print $2}'` is used for getting the second value in the processes rows, which is the PID). 
-
-<a name="author"></a>
-## Author
-Mohammad Shahin, a third-year student at Innopolis University.
