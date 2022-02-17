@@ -1,5 +1,5 @@
 # Provectus-internship-test-task
-This file explains and goes through the steps of Provectus Internship's test task's solution. 
+This file explains and goes through the steps of Provectus Internship's test task's solution. The task description can be found in the file `task.md`. 
 
 ## Table of contents
 - [Data Processing Problem level 2](#data-processing-problem)
