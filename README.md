@@ -2,7 +2,7 @@
 This file explains and goes through the steps of Provectus Internship's test task's solution. The task description can be found in the file `task.md`. 
 
 ## Table of contents
-- [Data Processing Problem level 2](#data-processing-problem)
+- [Data Processing Problem level 3](#data-processing-problem)
   - [Tech stack](#tech-stack)
   - [Logic](#logic)
   - [Database](#database)
@@ -14,7 +14,7 @@ This file explains and goes through the steps of Provectus Internship's test tas
 
 
 <a name="data-processing-problem"></a>
-## Data Processing Problem level 2
+## Data Processing Problem level 3
 
 <a name="tech-stack"></a>
 ### Tech stack
